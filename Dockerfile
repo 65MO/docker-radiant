@@ -1,6 +1,6 @@
 FROM r-base:latest
 
-MAINTAINER Flavio Barros "flaviommbarros@gmail.com"
+MAINTAINER Vincent Nijs "radiant@rady.ucsd.edu"
 
 RUN apt-get update && apt-get install -y \
     sudo \
@@ -19,10 +19,10 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     gdebi -n ss-latest.deb && \
     rm -f version.txt ss-latest.deb
 
-RUN R -e "install.packages(c('shiny', 'rmarkdown', 'tm', 'wordcloud', 'memoise'), repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('radiant', repos='http://radiant-rstats.github.io/minicran/')"
 
 COPY shiny-server.conf  /etc/shiny-server/shiny-server.conf
-COPY /myapp/* /srv/shiny-server/
+COPY /app/* /srv/shiny-server/
 
 EXPOSE 80
 
