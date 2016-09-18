@@ -7,11 +7,11 @@ This repo contains information to setup a dockerized instance of [radiant](https
 
 ## Install docker
 
-For Mac: https://docs.docker.com/docker-for-mac/
-For Windows: https://docs.docker.com/docker-for-windows/
-For Linux: https://docs.docker.com/engine/installation/
+* For Mac: https://docs.docker.com/docker-for-mac/
+* For Windows: https://docs.docker.com/docker-for-windows/
+* For Linux: https://docs.docker.com/engine/installation/
 
-After installing Docker make sure it is running but typing `docker` in a terminal.
+After installing Docker check that that it is running by typing `docker` in a terminal.
 
 ## Run from the Docker Hub image
 
@@ -27,7 +27,7 @@ Alternatively, you can clone and run dockerized radiant using the steps below:
 
 ## Cloning the repo
 
-First step clone the docker-radiant repo:
+The first step is to clone the docker-radiant repo:
 
 ```sh
 git clone https://github.com/radiant-rstats/docker-radiant.git
