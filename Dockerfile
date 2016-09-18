@@ -4,6 +4,7 @@ MAINTAINER Vincent Nijs "radiant@rady.ucsd.edu"
 
 RUN apt-get update && apt-get install -y \
     sudo \
+    git \
     gdebi-core \
     pandoc \
     pandoc-citeproc \
@@ -22,7 +23,7 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
 RUN R -e "install.packages('radiant', repos='http://radiant-rstats.github.io/minicran/')"
 
 COPY shiny-server.conf  /etc/shiny-server/shiny-server.conf
-COPY /app/* /srv/shiny-server/
+RUN git clone https://github.com/radiant-rstats/radiant.git /srv/shiny-server/radiant/
 
 EXPOSE 80
 

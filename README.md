@@ -1,56 +1,70 @@
-Dockerized Shiny App
+Dockerized Radiant
 =======================
 
-This is the Dockerized Shiny App [Wordcloud](http://shiny.rstudio.com/gallery/word-cloud.html)
+> The repo is adapted from Flavio Barros' excellent [shiny-wordclould](https://github.com/flaviobarros/shiny-wordcloud) example
 
-This Dockerfile is based on Debian "testing" and r-base image.
+This repo contains information to setup a dockerized instance of [radiant](https://radiant-rstats/radiant). The radiant docker image is available from [Docker Hub](https://registry.hub.docker.com/u/vnijs/docker-radiant/).
 
-The image is available from [Docker Hub](https://registry.hub.docker.com/u/flaviobarros/shiny-wordcloud/).
+## Install docker
 
-## Usage:
+For Mac: https://docs.docker.com/docker-for-mac/
+For Windows: https://docs.docker.com/docker-for-windows/
+For Linux: https://docs.docker.com/engine/installation/
 
-To run this Shiny App on your computer:
+After installing Docker make sure it is running but typing `docker` in a terminal.
 
-```sh
-docker run --rm -p 80:80 flaviobarros/shiny-wordcloud
-```
+## Run from the Docker Hub image
 
-and it will avaliable at http://127.0.0.1/ or http://localhost
-
-You can run the container at other ports. It can happen that there is some service running at PORT 80, as Apache ou Nginx.
-To run the app at PORT 3838 for example, you can use:
+To run and install the dockerized radiant app on your computer use:
 
 ```sh
-docker run --rm -p 3838:80 flaviobarros/shiny-wordcloud
+docker run --rm -p 80:80 vnijs/radiant
 ```
 
-## Intented usage:
+The app will be avaliable at <a href="http://127.0.0.1/" target="_blank">http://127.0.0.1/</a>
 
-This project can be used as a start point to build any dockerized shiny app that could be distributed at any server running docker.
-Possible use cases are:
+Alternatively, you can clone and run dockerized radiant using the steps below:
 
-* Deploy a single Shiny App at AWS, Google Compute Engine, Azure or a private server with docker.
-* Deploy Shiny Apps at a docker based PaaS as [dokku](https://github.com/progrium/dokku). 
+## Cloning the repo
 
-## Building your own Shiny App:
-
-After developing your Shiny App, you will need two files for deployment: ui.R and server.R. Then:
-
-* Remove all files from folder mypp (these files are from Wordcloud example) and put your files there, ui.R and server.R
-* Build a docker image with:
+First step clone the docker-radiant repo:
 
 ```sh
-docker build -t yourname/yourappname .
+git clone https://github.com/radiant-rstats/docker-radiant.git
 ```
 
-At this poit you will be able to run your app, just like Wordcloud.
+## Building the container
 
-## Deploy with a docker based PaaS
+Use the terminal to change the working directory to the location where you cloned the repo. Then build the docker image using:
 
-If you have a PaaS with Dockerfiles support, like [Deis](http://deis.io/) or [Dokku](https://github.com/progrium/dokku), you can git push this image. I just wrote a post with further instructions: [Git pushing Shiny Apps with docker and dokku](https://www.rmining.net/2015/05/11/git-pushing-shiny-apps-with-docker-dokku/)
+```sh
+docker build -t yourname/radiant .
+```
 
-## IMPORTANT
+If you need to update your container, e.g., to get the latest version of radiant, just rerun the command above. 
 
-This project is not an alternative Shiny Server. It exposes PORT 80 (not 3838) and is intented to serve only single shiny apps.
+Note that creating the container will take some time as it has to pull and install ubuntu, R, shiny-server, etc. as well as all required R-packages
 
+## Run the app
 
+To run the dockerized radiant app on your computer use:
+
+```sh
+docker run --rm -p 80:80 yourname/radiant
+```
+
+The app will be avaliable at <a href="http://127.0.0.1/" target="_blank">http://127.0.0.1/</a>
+
+To run the container on another port, e.g., 3838, you can use:
+
+```sh
+docker run --rm -p 3838:80 yourname/radiant
+```
+
+## Trouble shooting
+
+If something went wrong you can access the container through the bash shell using:
+
+```sh
+docker run -t -i yourname/radiant /bin/bash
+```
