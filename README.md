@@ -3,7 +3,7 @@ Dockerized Radiant
 
 > The repo is adapted from Flavio Barros' excellent [shiny-wordclould](https://github.com/flaviobarros/shiny-wordcloud) example
 
-This repo contains information to setup a dockerized instance of [radiant](https://radiant-rstats/radiant). The radiant docker image is available from [Docker Hub](https://registry.hub.docker.com/u/vnijs/docker-radiant/).
+This repo contains information to setup a dockerized instance of [radiant](https://radiant-rstats/radiant). The radiant docker image is available from [Docker Hub](https://hub.docker.com/r/vnijs/radiant/).
 
 ## Install docker
 
@@ -41,9 +41,18 @@ Use the terminal to change the working directory to the location where you clone
 docker build -t yourname/radiant .
 ```
 
+<!-- docker push <hub-user>/<repo-name> to push to docker hub -->
+
+
 If you need to update your container, e.g., to get the latest version of radiant, just rerun the command above. 
 
 Note that creating the container will take some time as it has to pull and install ubuntu, R, shiny-server, etc. as well as all required R-packages
+
+If the build fails for some reason you can remove it using:
+
+```sh
+docker rmi yourname/radiant
+```
 
 ## Run the app
 
