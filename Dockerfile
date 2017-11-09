@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     libcairo2-dev/unstable \
     libxt-dev \
     libssl-dev \
-    libxml2-dev
+    libxml2-dev \
+    libnlopt-dev
 
 # Download and install shiny server
 RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubuntu-12.04/x86_64/VERSION -O "version.txt" && \
@@ -21,7 +22,7 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     gdebi -n ss-latest.deb && \
     rm -f version.txt ss-latest.deb
 
-RUN R -e "install.packages('radiant', repos='http://radiant-rstats.github.io/minicran/')"
+RUN R -e "install.packages('radiant', repos = c('https://radiant-rstats.github.io/minicran/', 'https://cloud.r-project.org', 'https://cran.r-project.org'))"
 
 COPY shiny-server.conf  /etc/shiny-server/shiny-server.conf
 RUN git clone https://github.com/radiant-rstats/radiant.git /srv/shiny-server/radiant/

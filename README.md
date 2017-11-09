@@ -41,8 +41,8 @@ Use the terminal to change the working directory to the location where you clone
 docker build -t yourname/radiant .
 ```
 
+<!-- sudo docker login to login to docker hub and then ... -->
 <!-- docker push <hub-user>/<repo-name> to push to docker hub -->
-
 
 If you need to update your container, e.g., to get the latest version of radiant, just rerun the command above. 
 
