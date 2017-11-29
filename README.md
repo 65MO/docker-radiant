@@ -33,6 +33,13 @@ The first step is to clone the docker-radiant repo:
 git clone https://github.com/radiant-rstats/docker-radiant.git
 ```
 
+By default, file uploads are limited to 10MB and R-code in _R > Report_ and _R > Code_ will not be evaluated for security reasons. If you have appropriate security in place you can change these settings by editing `.Rprofile` in the `docker-radiant` repo you cloned. See example changes below:  
+
+```bash
+options(radiant.maxRequestSize = -1)  ## no file size limit
+options(radiant.report = TRUE)
+```
+
 ## Building the container
 
 Use the terminal to change the working directory to the location where you cloned the repo. Then build the docker image using:

@@ -4,4 +4,6 @@
 mkdir -p /var/log/shiny-server
 chown shiny.shiny /var/log/shiny-server
 
+chown shiny.shiny /home/shiny/.Rprofile
+
 exec shiny-server >> /var/log/shiny-server.log 2>&1

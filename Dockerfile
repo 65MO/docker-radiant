@@ -30,5 +30,6 @@ RUN git clone https://github.com/radiant-rstats/radiant.git /srv/shiny-server/ra
 EXPOSE 80
 
 COPY shiny-server.sh /usr/bin/shiny-server.sh
+COPY .Rprofile /home/shiny/.Rprofile
 
 CMD ["/usr/bin/shiny-server.sh"]
